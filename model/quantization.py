@@ -145,7 +145,7 @@ class CPUKernel:
                         exit_state = os.system(compile_command)
                         if not exit_state:
                             try:
-                                kernels = ctypes.cdll.LoadLibrary(kernel_file)
+                                kernels = ctypes.CDLL(kernel_file,winmode=0)
                             except:
                                 logger.warning(
                                     f"Load parallel cpu kernel failed {kernel_file}: {traceback.format_exc()}")
@@ -162,7 +162,7 @@ class CPUKernel:
                         exit_state = os.system(compile_command)
                         if not exit_state:
                             try:
-                                kernels = ctypes.cdll.LoadLibrary(kernel_file)
+                                kernels = ctypes.CDLL(kernel_file,winmode=0)
                             except:
                                 logger.warning(f"Load cpu kernel {kernel_file} failed: {traceback.format_exc()}")
                         else:
@@ -175,7 +175,7 @@ class CPUKernel:
                 return
         else:
             try:
-                kernels = ctypes.cdll.LoadLibrary(kernel_file)
+                kernels = ctypes.CDLL(kernel_file,winmode=0)
             except:
                 logger.warning(f"Load custom cpu kernel {kernel_file} failed: {traceback.format_exc()}")
 
